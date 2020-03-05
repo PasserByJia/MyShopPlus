@@ -11,7 +11,7 @@
 
     <properties>
         <!-- Commons -->
-        <okhttp3.version>4.1.0</okhttp3.version>
+        <okhttp3.version>4.0.1</okhttp3.version>
         <bitwalker.version>1.21</bitwalker.version>
         <feign-okhttp.version>10.3.0</feign-okhttp.version>
 
@@ -153,7 +153,6 @@
                 <artifactId>mapper-spring-boot-starter</artifactId>
                 <version>${spring-boot-mapper.version}</version>
             </dependency>
-
             <!-- Commons -->
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>

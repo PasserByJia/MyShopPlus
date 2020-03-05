@@ -12,7 +12,7 @@ spring:
         server-addr: local.k8s.node2:80
 dubbo:
   scan:
-    base-packages: com.funtl.myshop.plus.business.controller
+    base-packages: com.jh.myshop.plus.business.controller,com.jh.myshop.plus.business.service
   protocol:
     name: dubbo
     port: -1
@@ -20,6 +20,14 @@ dubbo:
   registry:
     address: nacos://local.k8s.node2
     port: 80
+
+# 开启 Feign 的 OKHttp 方式
+feign:
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+
 server:
   port: 9001
 management:
@@ -27,3 +35,8 @@ management:
     web:
       exposure:
         include: "*"
+business:
+  oauth2:
+    grant_type: password
+    client_id: client
+    client_secret: secret

@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: business-profile
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  cloud:
+    nacos:
+      discovery:
+        server-addr: local.k8s.node2:80
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: secret
+      access-token-uri: http://localhost:9001/oauth/token
+      user-authorization-uri: http://localhost:9001/oauth/authorize
+    resource:
+      token-info-uri: http://localhost:9001/oauth/check_token
+dubbo:
+  scan:
+    base-packages: com.jh.myshop.plus.business.controller
+  protocol:
+    name: dubbo
+    port: -1
+    serialization: kryo
+  registry:
+    address: nacos://local.k8s.node2
+    port: 80
+server:
+  port: 9002
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
