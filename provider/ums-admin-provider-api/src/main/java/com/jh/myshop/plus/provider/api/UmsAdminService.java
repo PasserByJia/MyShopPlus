@@ -4,14 +4,29 @@ import com.jh.myshop.plus.provider.domain.UmsAdmin;
 
 
 /**
- * 用户管理服务
- * @author 贾昊
+ * User's management Service
+ * @author jh
  */
 public interface UmsAdminService {
 
     /**
-     * 新增用户
-     * @author 贾昊
+     * insert user
+     * @author jh
+     * Greater than zero indicates success
      * */
     int insert(UmsAdmin umsAdmin);
+
+    /**
+     * get user
+     * @param username
+     * @return {@link UmsAdmin}
+     */
+    UmsAdmin get(String username);
+
+    /**
+     * get user
+     * @param umsAdmin
+     * @return {@link UmsAdmin}
+     */
+    UmsAdmin get(UmsAdmin umsAdmin);
 }
