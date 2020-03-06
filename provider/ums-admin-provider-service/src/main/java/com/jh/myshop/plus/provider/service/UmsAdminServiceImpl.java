@@ -44,6 +44,21 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     /**
+     * update admin data
+     * @param umsAdmin
+     * @return
+     */
+    @Override
+    public int update(UmsAdmin umsAdmin) {
+        UmsAdmin oldUmsAdmin = get(umsAdmin.getUsername());
+        oldUmsAdmin.setEmail(umsAdmin.getEmail());
+        oldUmsAdmin.setNickName(umsAdmin.getNickName());
+        oldUmsAdmin.setNote(umsAdmin.getNote());
+        oldUmsAdmin.setStatus(umsAdmin.getStatus());
+        return umsAdminMapper.updateByPrimaryKey(oldUmsAdmin);
+    }
+
+    /**
      * Init umsAdmin object
      * @param umsAdmin
      */

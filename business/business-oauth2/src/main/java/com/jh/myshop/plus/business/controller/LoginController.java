@@ -31,18 +31,26 @@ import java.util.Map;
 import java.util.Objects;
 
 @RestController
-@CrossOrigin(origins = "*",maxAge = 3600)
 public class LoginController {
     private static final String URL_OAUTH_TOKEN = "http://localhost:9001/oauth/token";
 
+    /**
+     * 动态加载，载入application.yml中的grant_type
+     */
     @Value("${business.oauth2.grant_type}")
-    public String oauth2_grant_type;
 
+    public String oauth2GrantType;
+    /**
+     * 动态加载，载入application.yml中的client_id
+     */
     @Value("${business.oauth2.client_id}")
-    public String oauth2_client_id;
+    public String oauth2ClientId;
 
+    /**
+     * 动态加载，载入application.yml中的client_id
+     */
     @Value("${business.oauth2.client_secret}")
-    public String oauth2_client_secret;
+    public String oauth2ClientSecret;
 
     @Resource(name = "userDetailsServiceBean")
     public UserDetailsService userDetailsService;
@@ -67,19 +75,20 @@ public class LoginController {
         if(userDetails == null || !passwordEncoder.matches(loginParam.getPassword(),userDetails.getPassword())){
             return new ResponseResult<Map<String, Object>>(ResponseResult.CodeStatus.FAIL, "账号或密码错误", null);
         }
-
+        //System.out.println(oauth2ClientId+" "+oauth2ClientSecret+" "+oauth2GrantType);
         Map<String,String> params = Maps.newHashMap();
-        params.put("username", "admin");
-        params.put("password", "123456");
-        params.put("client_id", oauth2_client_id);
-        params.put("grant_type", oauth2_grant_type);
-        params.put("client_secret", oauth2_client_secret);
+        params.put("username",loginParam.getUsername());
+        params.put("password", loginParam.getPassword());
+        params.put("client_id", oauth2ClientId);
+        params.put("grant_type", oauth2GrantType);
+        params.put("client_secret", oauth2ClientSecret);
 
         try {
             Response response = OkHttpClientUtil.getInstance().postData(URL_OAUTH_TOKEN, params);
             String jsonString = Objects.requireNonNull(response.body()).string();
             Map<String, Object> jsonMap = MapperUtils.json2map(jsonString);
             String token = String.valueOf(jsonMap.get("access_token"));
+            //System.out.println(jsonMap);
             result.put("token",token);
         }catch (Exception e) {
             e.printStackTrace();
@@ -99,11 +108,17 @@ public class LoginController {
         UmsAdmin umsAdmin = MapperUtils.json2pojoByTree(jsonString, "data", UmsAdmin.class);
         // 封装并返回结果.
         LoginInfo loginInfo = new LoginInfo();
-        loginInfo.setName(umsAdmin.getNickName());
+        loginInfo.setName(umsAdmin.getUsername());
         loginInfo.setAvatar(umsAdmin.getIcon());
+        loginInfo.setNickName(umsAdmin.getNickName());
         return new ResponseResult<LoginInfo>(ResponseResult.CodeStatus.OK, "获取用户信息", loginInfo);
     }
 
+    /**
+     * 注销登录
+     * @param request
+     * @return
+     */
     @PostMapping(value = "/user/logout")
     public ResponseResult<Void> logout(HttpServletRequest request){
         // 获取 token

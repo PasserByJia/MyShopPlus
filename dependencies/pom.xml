@@ -23,8 +23,8 @@
         <spring-cloud-alibaba.verion>2.1.0.RELEASE</spring-cloud-alibaba.verion>
         <alibaba-spring-context-support.version>1.0.2</alibaba-spring-context-support.version>
 
-        <!-- Ali Cloud -->
-        <aliyun-sdk-oss.version>3.6.0</aliyun-sdk-oss.version>
+        <!-- cloudinary -->
+        <cloudinary.version>1.25.0</cloudinary.version>
     </properties>
 
     <licenses>

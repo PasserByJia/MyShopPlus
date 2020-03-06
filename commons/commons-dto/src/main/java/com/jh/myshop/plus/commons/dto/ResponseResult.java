@@ -126,11 +126,11 @@ public class ResponseResult<T> implements Serializable {
          * 成功
          */
         public static final int OK = 20000;
+
         /**
          * 失败
          */
-
-        public static final int FAIL = 50000;
+        public static final int FAIL = 20004;
 
         /**
          * 非法token

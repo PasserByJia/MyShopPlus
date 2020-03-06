@@ -29,4 +29,11 @@ public interface UmsAdminService {
      * @return {@link UmsAdmin}
      */
     UmsAdmin get(UmsAdmin umsAdmin);
+
+    /**
+     * update UmsAdmin
+     * @param umsAdmin
+     * @return than zero indicates success
+     */
+    int update(UmsAdmin umsAdmin);
 }

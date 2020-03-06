@@ -1,9 +1,12 @@
 package com.jh.myshop.plus.business.feign;
 
+import com.jh.myshop.plus.business.dto.ProfileParam;
 import com.jh.myshop.plus.configure.FeignRequestConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
 /**
  * 个人信息管理
  * <p>
@@ -18,4 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface ProfileFeign {
     @GetMapping(value = "info/{username}")
     String info(@PathVariable String username);
+
+    @PostMapping(value = "update")
+    String update(@PathVariable ProfileParam profileParam);
 }
