@@ -36,4 +36,11 @@ public interface UmsAdminService {
      * @return than zero indicates success
      */
     int update(UmsAdmin umsAdmin);
+
+    /**
+     * 更新头像
+     * @param string
+     * @return
+     */
+    int modifyIcon(String string);
 }

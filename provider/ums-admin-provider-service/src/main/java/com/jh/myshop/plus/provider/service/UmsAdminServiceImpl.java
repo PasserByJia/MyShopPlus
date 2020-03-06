@@ -58,6 +58,11 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         return umsAdminMapper.updateByPrimaryKey(oldUmsAdmin);
     }
 
+    @Override
+    public int modifyIcon(String string) {
+        return 0;
+    }
+
     /**
      * Init umsAdmin object
      * @param umsAdmin
