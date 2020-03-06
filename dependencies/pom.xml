@@ -169,7 +169,16 @@
                 <artifactId>UserAgentUtils</artifactId>
                 <version>${bitwalker.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.cloudinary/cloudinary-http44 -->
+            <dependency>
+                <groupId>com.cloudinary</groupId>
+                <artifactId>cloudinary-http44</artifactId>
+                <version>${cloudinary.version}</version>
+            </dependency>
+
         </dependencies>
+
     </dependencyManagement>
 
     <repositories>

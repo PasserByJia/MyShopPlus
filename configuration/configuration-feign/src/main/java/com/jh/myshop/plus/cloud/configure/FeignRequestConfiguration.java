@@ -1,4 +1,4 @@
-package com.jh.myshop.plus.configure;
+package com.jh.myshop.plus.cloud.configure;
 
 import com.jh.myshop.plus.interceptor.FeignRequestInterceptor;
 import feign.RequestInterceptor;
