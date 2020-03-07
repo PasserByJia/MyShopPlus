@@ -59,8 +59,17 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     @Override
-    public int modifyIcon(String string) {
-        return 0;
+    public int modifyPassword(String username, String password) {
+        UmsAdmin umsAdmin = get(username);
+        umsAdmin.setPassword(passwordEncoder.encode(password));
+        return umsAdminMapper.updateByPrimaryKey(umsAdmin);
+    }
+
+    @Override
+    public int modifyIcon(String username,String path) {
+        UmsAdmin umsAdmin = get(username);
+        umsAdmin.setIcon(path);
+        return umsAdminMapper.updateByPrimaryKey(umsAdmin);
     }
 
     /**

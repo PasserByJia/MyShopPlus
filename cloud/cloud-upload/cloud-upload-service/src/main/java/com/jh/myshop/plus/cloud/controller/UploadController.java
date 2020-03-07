@@ -4,13 +4,16 @@ package com.jh.myshop.plus.cloud.controller;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.google.common.collect.Maps;
+import com.jh.myshop.plus.cloud.dto.UploadParam;
 import com.jh.myshop.plus.commons.dto.ResponseResult;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -38,9 +41,9 @@ public class UploadController {
     private static final String API_SECRET = "XF_JyCqKOMoVhqHZS1M1dSpDyWs";
 
     @PostMapping(value = "")
-    public ResponseResult<Map<String,Object>> login(MultipartFile multipartFile) throws IOException {
+    public ResponseResult<Map<String,Object>> upload(MultipartFile multipartFile,String username) throws IOException {
         //生成新的文件名
-        String newName = UUID.randomUUID()+"";
+        String newName = username+"-avatar";
 
         //转转换文件格式
         File toFile = new File(newName);
