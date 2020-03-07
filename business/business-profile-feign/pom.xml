@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.jh.myshop.plus</groupId>
-        <artifactId>business-profile</artifactId>
+        <artifactId>business</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>business-profile-feign</artifactId>

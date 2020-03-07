@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 
 /**
  * 个人信息管理
@@ -66,7 +65,6 @@ public class ProfileController {
     @PostMapping(value = "modify/password")
     public ResponseResult<Void> modifyPassword(@RequestBody PasswordParam passwordParam) {
         UmsAdmin umsAdmin = umsAdminService.get(passwordParam.getUsername());
-
         // 旧密码正确
         if (passwordEncoder.matches(passwordParam.getOldPassword(), umsAdmin.getPassword())) {
             int result = umsAdminService.modifyPassword(umsAdmin.getUsername(), passwordParam.getNewPassword());
